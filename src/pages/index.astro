@@ -7,8 +7,30 @@ import ExperienceItem from '../components/resume/experience-item.astro';
 import EducationItem from '../components/resume/education-item.astro';
 import SkillList from '../components/resume/skill-list.astro';
 import { resume } from '../data/resume';
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 
 const TABS_NAME = 'main-tabs';
+
+const portfolioItems = (await getCollection('portfolio')).sort((a, b) => {
+	const aTime = a.data.date?.getTime();
+	const bTime = b.data.date?.getTime();
+	if (aTime == null && bTime == null) return 0;
+	if (aTime == null) return 1;
+	if (bTime == null) return -1;
+	return bTime - aTime;
+});
+
+const cssId = (id: string) => id.replace(/[^a-zA-Z0-9_-]/g, '-');
+
+const renderedPortfolioItems = await Promise.all(
+	portfolioItems.map(async (item) => ({ item, id: cssId(item.id), Content: (await render(item)).Content })),
+);
+
+const portfolioSelectionCss = renderedPortfolioItems
+	.map(({ id }) => `.split:has(#portfolio-${id}:checked) #portfolio-detail-${id} { display: flex; }`)
+	.concat(portfolioItems.length > 0 ? ['.split:has(.portfolio-radio:checked) .right .empty-state { display: none; }'] : [])
+	.join('\n');
 ---
 
 <Layout title="Ali Mousavi">
@@ -91,15 +113,71 @@ const TABS_NAME = 'main-tabs';
 						</p>
 					</ResumeSection>
 				</div>
-				<div class="pane pane-portfolio">Portfolio content goes here</div>
+				<div class="pane pane-portfolio">
+					{portfolioItems.length === 0 ? (
+						<p class="portfolio-empty">No projects yet — check back soon.</p>
+					) : (
+						<div class="portfolio-list">
+							{renderedPortfolioItems.map(({ item, id }) => (
+								<>
+									<input
+										type="radio"
+										name="portfolio-select"
+										id={`portfolio-${id}`}
+										class="portfolio-radio"
+									/>
+									<label for={`portfolio-${id}`} class="portfolio-row">
+										<Image
+											src={item.data.thumbnail}
+											alt={item.data.title}
+											width={64}
+											height={64}
+											class="portfolio-thumb"
+										/>
+										<div>
+											<div class="portfolio-title">{item.data.title}</div>
+											{item.data.date && (
+												<div class="portfolio-date">
+													{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+												</div>
+											)}
+										</div>
+									</label>
+								</>
+							))}
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 
 		<div class="right">
 			<span class="empty-state">select a project</span>
+			{renderedPortfolioItems.map(({ item, id, Content }) => (
+				<div class="project-detail" id={`portfolio-detail-${id}`}>
+					<Image
+						src={item.data.thumbnail}
+						alt={item.data.title}
+						width={640}
+						height={360}
+						class="detail-thumb"
+					/>
+					{item.data.date && (
+						<div class="detail-date">
+							{item.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+						</div>
+					)}
+					<h2 class="detail-title">{item.data.title}</h2>
+					<div class="detail-body">
+						<Content />
+					</div>
+				</div>
+			))}
 		</div>
 	</div>
 </Layout>
+
+{portfolioSelectionCss && <style set:html={portfolioSelectionCss}></style>}
 
 <style>
 	.split {
@@ -117,9 +195,7 @@ const TABS_NAME = 'main-tabs';
 
 	.right {
 		width: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		overflow-y: auto;
 	}
 
 	@media (max-width: 768px) {
@@ -235,6 +311,61 @@ const TABS_NAME = 'main-tabs';
 		margin: 0;
 	}
 
+	.portfolio-empty {
+		color: var(--ink-500);
+	}
+
+	.portfolio-list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	.portfolio-radio {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.portfolio-row {
+		display: flex;
+		gap: var(--space-4);
+		align-items: center;
+		cursor: pointer;
+		padding: var(--space-3);
+	}
+
+	.portfolio-thumb {
+		width: 64px;
+		height: 64px;
+		flex: none;
+		object-fit: cover;
+		border: 1px solid var(--border-default);
+	}
+
+	.portfolio-title {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: var(--text-base);
+		color: var(--ink-900);
+	}
+
+	.portfolio-date {
+		font-size: var(--text-xs);
+		color: var(--ink-500);
+	}
+
+	.portfolio-radio:checked + .portfolio-row {
+		background: var(--surface-sunken);
+	}
+
+	.portfolio-radio:focus-visible + .portfolio-row {
+		outline: 2px solid var(--accent-500);
+		outline-offset: 2px;
+	}
+
 	.left:has(#main-tabs-resume:checked) .pane-resume {
 		display: flex;
 	}
@@ -244,9 +375,46 @@ const TABS_NAME = 'main-tabs';
 	}
 
 	.empty-state {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
 		font-family: var(--font-display);
 		font-size: var(--text-lg);
 		color: var(--ink-500);
 		opacity: 0.28;
+	}
+
+	.project-detail {
+		display: none;
+		flex-direction: column;
+		gap: var(--space-5);
+		padding: var(--space-12) var(--space-10);
+	}
+
+	.detail-thumb {
+		width: 100%;
+		height: 260px;
+		object-fit: cover;
+		border: 1px solid var(--border-default);
+	}
+
+	.detail-date {
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		color: var(--ink-500);
+	}
+
+	.detail-title {
+		font-family: var(--font-display);
+		font-size: var(--text-2xl);
+		margin: 0;
+	}
+
+	.detail-body {
+		font-family: var(--font-body);
+		font-size: var(--text-base);
+		color: var(--ink-700);
+		line-height: var(--leading-normal);
 	}
 </style>
