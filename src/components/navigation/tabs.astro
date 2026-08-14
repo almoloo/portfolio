@@ -7,10 +7,11 @@ interface TabItem {
 interface Props {
 	items: TabItem[];
 	active?: string;
+	name?: string;
 }
 
-const { items, active = items[0]?.value } = Astro.props;
-const groupName = `tabs-${crypto.randomUUID()}`;
+const { items, active = items[0]?.value, name } = Astro.props;
+const groupName = name ?? `tabs-${crypto.randomUUID()}`;
 ---
 
 <div class="tabs">

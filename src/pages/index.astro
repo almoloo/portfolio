@@ -1,7 +1,153 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Tag from '../components/content/tag.astro';
+import Tabs from '../components/navigation/tabs.astro';
+
+const TABS_NAME = 'main-tabs';
 ---
 
-<Layout title="Astro">
-	<h1>Astro</h1>
+<Layout title="Ali Mousavi">
+	<div class="split">
+		<div class="left">
+			<header class="header">
+				<div class="name">Ali Mousavi</div>
+				<p class="tagline">Frontend engineer &amp; interactive designer</p>
+				<div class="tags">
+					<Tag variant="accent">remote</Tag>
+					<Tag variant="accent">available q4 2026</Tag>
+				</div>
+				<p class="bio">
+					10 years writing interfaces, specializing in video platforms and crypto products. I like small
+					tools, tight loops, and things that load fast.
+				</p>
+			</header>
+
+			<div class="tabs-wrap">
+				<Tabs
+					name={TABS_NAME}
+					active="portfolio"
+					items={[
+						{ label: 'Resume', value: 'resume' },
+						{ label: 'Portfolio', value: 'portfolio' },
+					]}
+				/>
+			</div>
+
+			<div class="panes">
+				<div class="pane pane-resume">Resume content goes here</div>
+				<div class="pane pane-portfolio">Portfolio content goes here</div>
+			</div>
+		</div>
+
+		<div class="right">
+			<span class="empty-state">select a project</span>
+		</div>
+	</div>
 </Layout>
+
+<style>
+	.split {
+		display: flex;
+		min-height: 100vh;
+	}
+
+	.left {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		border-right: 1px solid var(--border-default);
+		overflow-y: auto;
+	}
+
+	.right {
+		width: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	@media (max-width: 768px) {
+		.split {
+			flex-direction: column;
+		}
+
+		.left,
+		.right {
+			width: 100%;
+		}
+
+		.left {
+			border-right: none;
+			border-bottom: 1px solid var(--border-default);
+		}
+
+		.right {
+			min-height: 40vh;
+		}
+	}
+
+	.header {
+		padding: var(--space-12) var(--space-10) var(--space-6);
+		border-bottom: 1px solid var(--border-default);
+	}
+
+	.name {
+		font-family: var(--font-display);
+		font-weight: var(--weight-bold);
+		font-size: var(--text-3xl);
+		margin-bottom: var(--space-2);
+	}
+
+	.tagline {
+		font-family: var(--font-body);
+		font-size: var(--text-md);
+		color: var(--ink-700);
+		margin: 0 0 var(--space-3);
+	}
+
+	.tags {
+		display: flex;
+		gap: var(--space-2);
+		flex-wrap: wrap;
+		margin-bottom: var(--space-4);
+	}
+
+	.bio {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+		max-width: 480px;
+		margin: 0;
+	}
+
+	.tabs-wrap {
+		padding: var(--space-4) var(--space-10) 0;
+	}
+
+	.panes {
+		padding: var(--space-6) var(--space-10) var(--space-12);
+		flex: 1;
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+	}
+
+	.pane {
+		display: none;
+	}
+
+	.left:has(#main-tabs-resume:checked) .pane-resume {
+		display: block;
+	}
+
+	.left:has(#main-tabs-portfolio:checked) .pane-portfolio {
+		display: block;
+	}
+
+	.empty-state {
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		color: var(--ink-500);
+		opacity: 0.28;
+	}
+</style>
