@@ -1,0 +1,71 @@
+---
+interface Props {
+	checked?: boolean;
+	label?: string;
+}
+
+const { checked = false, label } = Astro.props;
+---
+
+<label class="switch">
+	<input type="checkbox" checked={checked} class="checkbox" />
+	<span class="track">
+		<span class="thumb"></span>
+	</span>
+	{label}
+</label>
+
+<style>
+	.switch {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		cursor: pointer;
+		color: var(--ink-900);
+	}
+
+	.checkbox {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.track {
+		width: 44px;
+		height: 24px;
+		background: var(--beige-100);
+		border: 1px solid var(--ink-900);
+		border-radius: var(--radius-0);
+		position: relative;
+		display: inline-block;
+		flex: none;
+	}
+
+	.checkbox:checked ~ .track {
+		background: var(--accent-500);
+	}
+
+	.thumb {
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 16px;
+		height: 18px;
+		border-radius: var(--radius-0);
+		background: var(--ink-900);
+		transition: left var(--duration-normal) var(--ease-linear);
+	}
+
+	.checkbox:checked ~ .track .thumb {
+		left: 22px;
+	}
+
+	.checkbox:focus-visible ~ .track {
+		outline: 2px solid var(--accent-500);
+		outline-offset: 2px;
+	}
+</style>

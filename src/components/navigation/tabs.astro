@@ -1,0 +1,72 @@
+---
+interface TabItem {
+	label: string;
+	value: string;
+}
+
+interface Props {
+	items: TabItem[];
+	active?: string;
+}
+
+const { items, active = items[0]?.value } = Astro.props;
+const groupName = `tabs-${crypto.randomUUID()}`;
+---
+
+<div class="tabs">
+	{items.map((item) => (
+		<>
+			<input
+				type="radio"
+				name={groupName}
+				id={`${groupName}-${item.value}`}
+				value={item.value}
+				checked={item.value === active}
+				class="radio"
+			/>
+			<label for={`${groupName}-${item.value}`}>{item.label}</label>
+		</>
+	))}
+</div>
+
+<style>
+	.tabs {
+		display: flex;
+		gap: var(--space-6);
+		border-bottom: 1px solid var(--border-subtle);
+		font-family: var(--font-display);
+		font-weight: var(--weight-bold);
+		text-transform: none;
+		letter-spacing: var(--tracking-normal);
+	}
+
+	.radio {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.tabs label {
+		cursor: pointer;
+		padding: 10px 2px;
+		font-family: inherit;
+		text-transform: inherit;
+		letter-spacing: inherit;
+		font-size: var(--text-sm);
+		color: var(--ink-500);
+		border-bottom: 3px solid transparent;
+		margin-bottom: -2px;
+	}
+
+	.radio:checked + label {
+		color: var(--ink-900);
+		border-bottom-color: var(--accent-500);
+	}
+
+	.radio:focus-visible + label {
+		outline: 2px solid var(--accent-500);
+		outline-offset: 2px;
+	}
+</style>

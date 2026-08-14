@@ -4,6 +4,10 @@ import Button from '../components/core/button.astro';
 import IconButton from '../components/core/icon-button.astro';
 import Tag from '../components/content/tag.astro';
 import Card from '../components/content/card.astro';
+import Tooltip from '../components/feedback/tooltip.astro';
+import Input from '../components/forms/input.astro';
+import Switch from '../components/forms/switch.astro';
+import Tabs from '../components/navigation/tabs.astro';
 ---
 
 <Layout title="Design system">
@@ -62,6 +66,39 @@ import Card from '../components/content/card.astro';
 					tags={['design system']}
 					image="https://picsum.photos/520/300"
 				/>
+			</div>
+		</section>
+
+		<section>
+			<h2>Tooltip</h2>
+			<div class="row">
+				<Tooltip label="A helpful hint">
+					<Button variant="secondary" size="md">Hover me</Button>
+				</Tooltip>
+			</div>
+		</section>
+
+		<section>
+			<h2>Input</h2>
+			<div class="row">
+				<Input label="Name" placeholder="Ali Mousavi" />
+				<Input label="Email" placeholder="you@example.com" value="taken@example.com" error="That email is already taken." />
+			</div>
+		</section>
+
+		<section>
+			<h2>Switch</h2>
+			<div class="row">
+				<Switch label="Unchecked" />
+				<Switch label="Checked" checked />
+			</div>
+		</section>
+
+		<section>
+			<h2>Tabs</h2>
+			<div class="row" style="flex-direction: column; align-items: flex-start; gap: var(--space-4);">
+				<Tabs items={[{ label: 'Overview', value: 'overview' }, { label: 'Details', value: 'details' }, { label: 'Notes', value: 'notes' }]} />
+				<Tabs items={[{ label: 'First', value: 'first' }, { label: 'Second', value: 'second' }]} active="second" />
 			</div>
 		</section>
 	</main>
