@@ -3,7 +3,7 @@ interface Props {
 	role: string;
 	org?: string;
 	period?: string;
-	notes?: string;
+	notes?: string | string[];
 }
 
 const { role, org, period, notes } = Astro.props;
@@ -14,7 +14,13 @@ const { role, org, period, notes } = Astro.props;
 		<span class="role">{role}{org && <> · {org}</>}</span>
 		{period && <span class="period">{period}</span>}
 	</div>
-	{notes && <p class="notes">{notes}</p>}
+	{notes && (Array.isArray(notes) ? (
+		<ul class="notes-list">
+			{notes.map((note) => <li>{note}</li>)}
+		</ul>
+	) : (
+		<p class="notes">{notes}</p>
+	))}
 </div>
 
 <style>
@@ -43,5 +49,16 @@ const { role, org, period, notes } = Astro.props;
 		font-family: var(--font-body);
 		font-size: var(--text-sm);
 		color: var(--ink-700);
+	}
+
+	.notes-list {
+		margin: 4px 0 0;
+		padding-left: 1.1em;
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
 	}
 </style>

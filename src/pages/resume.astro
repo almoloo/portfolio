@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ResumeHeader from '../components/resume/resume-header.astro';
+import ResumeSection from '../components/resume/resume-section.astro';
+import ExperienceItem from '../components/resume/experience-item.astro';
+import EducationItem from '../components/resume/education-item.astro';
+import SkillList from '../components/resume/skill-list.astro';
+import { resume } from '../data/resume';
+---
+
+<Layout title="Ali Mousavi — Resume">
+	<main class="page">
+		<ResumeHeader name={resume.header.name} title={resume.header.title} links={resume.header.links} />
+
+		<p class="summary">{resume.summary}</p>
+
+		<ResumeSection title="Experience">
+			{resume.experience.map((entry) => (
+				<ExperienceItem role={entry.role} org={entry.org} period={entry.period} notes={entry.notes} />
+			))}
+		</ResumeSection>
+
+		<ResumeSection title="Achievements">
+			<ul class="achievements">
+				{resume.achievements.map((achievement) => (
+					<li>
+						<strong>{achievement.result}</strong>
+						{achievement.project && <> — {achievement.project}</>}
+					</li>
+				))}
+			</ul>
+		</ResumeSection>
+
+		<ResumeSection title="Education">
+			{resume.education.map((entry) => (
+				<EducationItem degree={entry.degree} school={entry.school} period={entry.period} />
+			))}
+		</ResumeSection>
+
+		<ResumeSection title="Skills">
+			<div class="skill-groups">
+				{resume.skillGroups.map((group) => (
+					<div>
+						<p class="skill-group-label">{group.label}</p>
+						<SkillList skills={group.skills} />
+					</div>
+				))}
+			</div>
+		</ResumeSection>
+
+		<ResumeSection title="Languages">
+			<p class="languages">
+				{resume.languages.map((entry) => `${entry.language} — ${entry.level}`).join(', ')}
+			</p>
+		</ResumeSection>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: 700px;
+		margin: 0 auto;
+		padding: var(--space-8) var(--space-4);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-8);
+	}
+
+	.summary {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+		line-height: var(--leading-normal);
+	}
+
+	.achievements {
+		margin: 0;
+		padding-left: 1.1em;
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+
+	.skill-groups {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.skill-group-label {
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
+		color: var(--ink-700);
+		margin: 0 0 var(--space-2);
+	}
+
+	.languages {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+		margin: 0;
+	}
+</style>
