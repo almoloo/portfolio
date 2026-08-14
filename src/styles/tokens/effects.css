@@ -1,0 +1,22 @@
+:root {
+  --radius-0: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-pill: 0px;
+  --border-width-sm: 1px;
+  --border-width-md: 1px;
+  --border-width-lg: 3px;
+  --shadow-pixel-sm: 3px 3px 0 0 var(--border-default);
+  --shadow-pixel-md: 5px 5px 0 0 var(--border-default);
+  --shadow-pixel-lg: 8px 8px 0 0 var(--border-default);
+  --shadow-pixel-accent: 5px 5px 0 0 var(--accent);
+  --shadow-pixel-press: 2px 2px 0 0 var(--border-default);
+  --duration-fast: 80ms;
+  --duration-normal: 140ms;
+  --ease-pixel: steps(3, end);
+  --ease-linear: linear;
+  --pattern-dither: repeating-linear-gradient(45deg, var(--ink-900) 0, var(--ink-900) 1px, transparent 1px, transparent 9px);
+  --pattern-dither-opacity: 0.035;
+  --pattern-bands: none;
+}
