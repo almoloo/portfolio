@@ -13,3 +13,4 @@ Nothing in progress - run /feature, /fix, or /rollback to start one.
 **Favicon as a simple "A"** - replace favicon.svg/.ico with a bold "A" glyph, theme-aware light/dark fill (Completed)
 **Hero contact links** - remove remote/available tags from hero, move github/email/phone links there (Completed)
 **Hero name/subtitle spacing + copy** - tighten gap between name and subtitle, update subtitle text, remove phone number (Completed)
+**Portfolio content — import real projects** - add real portfolio entries (write-up, thumbnail, GitHub/demo links) for 18 GitHub repos, extending the schema with githubUrl/demoUrl (Completed)

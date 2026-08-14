@@ -162,6 +162,20 @@ const portfolioSelectionCss = renderedPortfolioItems
 						</div>
 					)}
 					<h2 class="detail-title">{item.data.title}</h2>
+					{(item.data.githubUrl || item.data.demoUrl) && (
+						<div class="detail-links">
+							{item.data.githubUrl && (
+								<a class="detail-link" href={item.data.githubUrl} target="_blank" rel="noopener noreferrer">
+									GitHub
+								</a>
+							)}
+							{item.data.demoUrl && (
+								<a class="detail-link" href={item.data.demoUrl} target="_blank" rel="noopener noreferrer">
+									Live demo
+								</a>
+							)}
+						</div>
+					)}
 					<div class="detail-body">
 						<Content />
 					</div>
@@ -400,6 +414,31 @@ const portfolioSelectionCss = renderedPortfolioItems
 		font-family: var(--font-display);
 		font-size: var(--text-2xl);
 		margin: 0;
+	}
+
+	.detail-links {
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.detail-link {
+		display: inline-flex;
+		align-items: center;
+		font-family: var(--font-display);
+		font-weight: var(--weight-bold);
+		font-size: var(--text-sm);
+		padding: 10px 16px;
+		border-radius: var(--radius-pill);
+		border: 1px solid var(--ink-900);
+		background: var(--surface-card);
+		color: var(--ink-900);
+		text-decoration: none;
+		transition: transform var(--duration-fast) var(--ease-linear);
+	}
+
+	.detail-link:hover {
+		transform: translate(-1px, -1px);
 	}
 
 	.detail-body {
