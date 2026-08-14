@@ -1,0 +1,81 @@
+---
+interface Props {
+	variant?: 'primary' | 'secondary' | 'ghost';
+	size?: 'sm' | 'md' | 'lg';
+	disabled?: boolean;
+}
+
+const { variant = 'secondary', size = 'md', disabled = false } = Astro.props;
+---
+
+<button class:list={['button', variant, size]} disabled={disabled}>
+	<slot name="icon" />
+	<slot />
+</button>
+
+<style>
+	.button {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--font-display);
+		font-weight: var(--weight-bold);
+		text-transform: none;
+		letter-spacing: var(--tracking-normal);
+		border-radius: var(--radius-pill);
+		cursor: pointer;
+		transition: transform var(--duration-fast) var(--ease-linear);
+		box-shadow: none;
+		transform: none;
+	}
+
+	.button:disabled {
+		cursor: not-allowed;
+		opacity: 0.45;
+	}
+
+	.button:not(:disabled):hover {
+		transform: translate(-1px, -1px);
+	}
+
+	.button:not(:disabled):active {
+		transform: translate(1px, 1px);
+	}
+
+	.button.sm {
+		padding: 6px 10px;
+		font-size: var(--text-xs);
+	}
+
+	.button.md {
+		padding: 10px 16px;
+		font-size: var(--text-sm);
+	}
+
+	.button.lg {
+		padding: 14px 22px;
+		font-size: var(--text-base);
+	}
+
+	.button.primary {
+		background: var(--accent-500);
+		color: var(--beige-50);
+		border: 1px solid var(--ink-900);
+	}
+
+	.button.secondary {
+		background: var(--surface-card);
+		color: var(--ink-900);
+		border: 1px solid var(--ink-900);
+	}
+
+	.button.ghost {
+		background: transparent;
+		color: var(--ink-900);
+		border: 1px solid transparent;
+	}
+
+	.button.ghost:not(:disabled):hover {
+		text-decoration: underline;
+	}
+</style>

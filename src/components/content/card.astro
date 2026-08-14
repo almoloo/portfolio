@@ -1,0 +1,83 @@
+---
+import Tag from './tag.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+	tags?: string[];
+	image?: string;
+	href?: string;
+}
+
+const { title, description, tags = [], image, href = '#' } = Astro.props;
+---
+
+<a class="card" href={href}>
+	<div class="thumb" style={image ? `background-image: url(${image}); background-size: cover; background-position: center;` : undefined}>
+	</div>
+	<div class="body">
+		<div class="title">{title}</div>
+		{description && <div class="description">{description}</div>}
+		{tags.length > 0 && (
+			<div class="tags">
+				{tags.map((tag) => <Tag>{tag}</Tag>)}
+			</div>
+		)}
+	</div>
+</a>
+
+<style>
+	.card {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		color: var(--ink-900);
+		background: var(--surface-card);
+		border: 1px solid var(--ink-900);
+		border-radius: var(--radius-0);
+		overflow: hidden;
+		box-shadow: none;
+		transform: none;
+		transition: transform var(--duration-fast) var(--ease-linear);
+		width: 260px;
+	}
+
+	.card:hover {
+		transform: translate(-2px, -2px);
+	}
+
+	.thumb {
+		height: 150px;
+		background-color: var(--beige-100);
+		background-image: var(--pattern-dither);
+		border-bottom: 1px solid var(--ink-900);
+	}
+
+	.body {
+		padding: var(--space-4);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+
+	.title {
+		font-family: var(--font-display);
+		font-weight: var(--weight-bold);
+		text-transform: none;
+		letter-spacing: var(--tracking-normal);
+		font-size: var(--text-md);
+	}
+
+	.description {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+	}
+
+	.tags {
+		display: flex;
+		gap: var(--space-2);
+		flex-wrap: wrap;
+		margin-top: var(--space-1);
+	}
+</style>

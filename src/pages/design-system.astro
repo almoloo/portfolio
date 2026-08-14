@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/core/button.astro';
+import IconButton from '../components/core/icon-button.astro';
+import Tag from '../components/content/tag.astro';
+import Card from '../components/content/card.astro';
+---
+
+<Layout title="Design system">
+	<main class="page">
+		<section>
+			<h2>Button</h2>
+			<div class="row">
+				<Button variant="primary" size="sm">Primary sm</Button>
+				<Button variant="primary" size="md">Primary md</Button>
+				<Button variant="primary" size="lg">Primary lg</Button>
+			</div>
+			<div class="row">
+				<Button variant="secondary" size="sm">Secondary sm</Button>
+				<Button variant="secondary" size="md">Secondary md</Button>
+				<Button variant="secondary" size="lg">Secondary lg</Button>
+			</div>
+			<div class="row">
+				<Button variant="ghost" size="sm">Ghost sm</Button>
+				<Button variant="ghost" size="md">Ghost md</Button>
+				<Button variant="ghost" size="lg">Ghost lg</Button>
+			</div>
+			<div class="row">
+				<Button variant="primary" disabled>Disabled</Button>
+			</div>
+		</section>
+
+		<section>
+			<h2>IconButton</h2>
+			<div class="row">
+				<IconButton size="sm" label="Small action">↗</IconButton>
+				<IconButton size="md" label="Medium action">↗</IconButton>
+				<IconButton size="lg" label="Large action">↗</IconButton>
+				<IconButton label="Disabled action" disabled>×</IconButton>
+			</div>
+		</section>
+
+		<section>
+			<h2>Tag</h2>
+			<div class="row">
+				<Tag>Default</Tag>
+				<Tag variant="accent">Accent</Tag>
+			</div>
+		</section>
+
+		<section>
+			<h2>Card</h2>
+			<div class="row">
+				<Card
+					title="Project without image"
+					description="Falls back to the dither pattern."
+					tags={['astro', 'css']}
+				/>
+				<Card
+					title="Project with image"
+					description="Uses a real thumbnail."
+					tags={['design system']}
+					image="https://picsum.photos/520/300"
+				/>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: var(--space-8);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-8);
+	}
+
+	.row {
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+		flex-wrap: wrap;
+	}
+</style>
