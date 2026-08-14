@@ -1,0 +1,47 @@
+---
+interface Props {
+	role: string;
+	org?: string;
+	period?: string;
+	notes?: string;
+}
+
+const { role, org, period, notes } = Astro.props;
+---
+
+<div class="item">
+	<div class="row">
+		<span class="role">{role}{org && <> · {org}</>}</span>
+		{period && <span class="period">{period}</span>}
+	</div>
+	{notes && <p class="notes">{notes}</p>}
+</div>
+
+<style>
+	.row {
+		display: flex;
+		justify-content: space-between;
+		gap: var(--space-3);
+		align-items: baseline;
+	}
+
+	.role {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: var(--text-base);
+	}
+
+	.period {
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		color: var(--ink-500);
+		white-space: nowrap;
+	}
+
+	.notes {
+		margin: 4px 0 0;
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+	}
+</style>

@@ -1,0 +1,21 @@
+---
+import Tag from '../content/tag.astro';
+
+interface Props {
+	skills: string[];
+}
+
+const { skills } = Astro.props;
+---
+
+<div class="skills">
+	{skills.map((skill) => <Tag>{skill}</Tag>)}
+</div>
+
+<style>
+	.skills {
+		display: flex;
+		gap: var(--space-2);
+		flex-wrap: wrap;
+	}
+</style>

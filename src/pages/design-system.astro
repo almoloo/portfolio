@@ -8,6 +8,11 @@ import Tooltip from '../components/feedback/tooltip.astro';
 import Input from '../components/forms/input.astro';
 import Switch from '../components/forms/switch.astro';
 import Tabs from '../components/navigation/tabs.astro';
+import ResumeHeader from '../components/resume/resume-header.astro';
+import ResumeSection from '../components/resume/resume-section.astro';
+import ExperienceItem from '../components/resume/experience-item.astro';
+import EducationItem from '../components/resume/education-item.astro';
+import SkillList from '../components/resume/skill-list.astro';
 ---
 
 <Layout title="Design system">
@@ -101,6 +106,40 @@ import Tabs from '../components/navigation/tabs.astro';
 				<Tabs items={[{ label: 'First', value: 'first' }, { label: 'Second', value: 'second' }]} active="second" />
 			</div>
 		</section>
+
+		<section>
+			<h2>Resume</h2>
+			<div class="resume">
+				<ResumeHeader
+					name="Ali Mousavi"
+					title="Software Engineer"
+					links={[
+						{ label: 'email', href: 'mailto:hello@example.com' },
+						{ label: 'github', href: 'https://github.com' },
+						{ label: 'linkedin', href: 'https://linkedin.com' },
+					]}
+				/>
+				<ResumeSection title="Experience">
+					<ExperienceItem
+						role="Senior Frontend Engineer"
+						org="Acme Co"
+						period="2022 — present"
+						notes="Led the redesign of the core product's design system."
+					/>
+					<ExperienceItem
+						role="Frontend Engineer"
+						org="Widgets Inc"
+						period="2019 — 2022"
+					/>
+				</ResumeSection>
+				<ResumeSection title="Education">
+					<EducationItem degree="B.S. Computer Science" school="State University" period="2015 — 2019" />
+				</ResumeSection>
+				<ResumeSection title="Skills">
+					<SkillList skills={['astro', 'typescript', 'css', 'design systems']} />
+				</ResumeSection>
+			</div>
+		</section>
 	</main>
 </Layout>
 
@@ -119,5 +158,12 @@ import Tabs from '../components/navigation/tabs.astro';
 		align-items: center;
 		gap: var(--space-4);
 		flex-wrap: wrap;
+	}
+
+	.resume {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+		max-width: 600px;
 	}
 </style>

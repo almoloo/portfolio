@@ -1,0 +1,36 @@
+---
+interface Props {
+	degree: string;
+	school?: string;
+	period?: string;
+}
+
+const { degree, school, period } = Astro.props;
+---
+
+<div class="row">
+	<span class="degree">{degree}{school && <>, {school}</>}</span>
+	{period && <span class="period">{period}</span>}
+</div>
+
+<style>
+	.row {
+		display: flex;
+		justify-content: space-between;
+		gap: var(--space-3);
+		align-items: baseline;
+	}
+
+	.degree {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: var(--text-base);
+	}
+
+	.period {
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		color: var(--ink-500);
+		white-space: nowrap;
+	}
+</style>

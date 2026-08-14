@@ -1,0 +1,28 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="resume-section">
+	<h3>{title}</h3>
+	<div class="stack">
+		<slot />
+	</div>
+</section>
+
+<style>
+	.resume-section h3 {
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-3);
+		font-family: var(--font-display);
+	}
+
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-5);
+	}
+</style>

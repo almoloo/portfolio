@@ -1,0 +1,65 @@
+---
+interface ResumeHeaderLink {
+	label: string;
+	href?: string;
+}
+
+interface Props {
+	name: string;
+	title?: string;
+	links?: ResumeHeaderLink[];
+}
+
+const { name, title, links = [] } = Astro.props;
+---
+
+<div class="header">
+	<div>
+		<div class="name">{name}</div>
+		{title && <div class="title">{title}</div>}
+	</div>
+	<div class="links">
+		{links.map((link, i) => (
+			<>
+				{i > 0 && <span class="separator">·</span>}
+				<a href={link.href || '#'}>{link.label}</a>
+			</>
+		))}
+	</div>
+</div>
+
+<style>
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+	}
+
+	.name {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: var(--text-2xl);
+	}
+
+	.title {
+		font-family: var(--font-body);
+		font-size: var(--text-md);
+		color: var(--ink-700);
+		margin-top: 2px;
+	}
+
+	.links {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		color: var(--ink-700);
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.separator {
+		color: var(--ink-500);
+	}
+</style>
