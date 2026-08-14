@@ -1,3 +1,8 @@
+@context/project-overview.md
+@context/coding-standards.md
+@context/ai-interaction.md
+@context/current-feature.md
+
 ## Development
 
 When starting the dev server, use background mode:
