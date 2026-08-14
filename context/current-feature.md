@@ -12,3 +12,4 @@ Nothing in progress - run /feature, /fix, or /rollback to start one.
 **Default to Resume tab, drop almoloo.com link** - homepage now opens on the Resume tab by default; almoloo.com removed from resume contact links (Completed)
 **Favicon as a simple "A"** - replace favicon.svg/.ico with a bold "A" glyph, theme-aware light/dark fill (Completed)
 **Hero contact links** - remove remote/available tags from hero, move github/email/phone links there (Completed)
+**Hero name/subtitle spacing + copy** - tighten gap between name and subtitle, update subtitle text, remove phone number (Completed)

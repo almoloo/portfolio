@@ -52,7 +52,6 @@ export const resume: ResumeData = {
 		links: [
 			{ label: 'amousavig@icloud.com', href: 'mailto:amousavig@icloud.com' },
 			{ label: 'github.com/almoloo', href: 'https://github.com/almoloo' },
-			{ label: '0935 138 3855', href: 'tel:+989351383855' },
 		],
 	},
 	summary:
