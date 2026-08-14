@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Tag from '../components/content/tag.astro';
 import Tabs from '../components/navigation/tabs.astro';
+import ResumeSection from '../components/resume/resume-section.astro';
+import ExperienceItem from '../components/resume/experience-item.astro';
+import EducationItem from '../components/resume/education-item.astro';
+import SkillList from '../components/resume/skill-list.astro';
+import { resume } from '../data/resume';
 
 const TABS_NAME = 'main-tabs';
 ---
@@ -34,7 +39,58 @@ const TABS_NAME = 'main-tabs';
 			</div>
 
 			<div class="panes">
-				<div class="pane pane-resume">Resume content goes here</div>
+				<div class="pane pane-resume">
+					<div class="contact-links">
+						{resume.header.links.map((link, i) => (
+							<>
+								{i > 0 && <span class="separator">·</span>}
+								<a href={link.href || '#'}>{link.label}</a>
+							</>
+						))}
+					</div>
+
+					<p class="summary">{resume.summary}</p>
+
+					<ResumeSection title="Experience">
+						{resume.experience.map((entry) => (
+							<ExperienceItem role={entry.role} org={entry.org} period={entry.period} notes={entry.notes} />
+						))}
+					</ResumeSection>
+
+					<ResumeSection title="Achievements">
+						<ul class="achievements">
+							{resume.achievements.map((achievement) => (
+								<li>
+									<strong>{achievement.result}</strong>
+									{achievement.project && <> — {achievement.project}</>}
+								</li>
+							))}
+						</ul>
+					</ResumeSection>
+
+					<ResumeSection title="Education">
+						{resume.education.map((entry) => (
+							<EducationItem degree={entry.degree} school={entry.school} period={entry.period} />
+						))}
+					</ResumeSection>
+
+					<ResumeSection title="Skills">
+						<div class="skill-groups">
+							{resume.skillGroups.map((group) => (
+								<div>
+									<p class="skill-group-label">{group.label}</p>
+									<SkillList skills={group.skills} />
+								</div>
+							))}
+						</div>
+					</ResumeSection>
+
+					<ResumeSection title="Languages">
+						<p class="languages">
+							{resume.languages.map((entry) => `${entry.language} — ${entry.level}`).join(', ')}
+						</p>
+					</ResumeSection>
+				</div>
 				<div class="pane pane-portfolio">Portfolio content goes here</div>
 			</div>
 		</div>
@@ -134,10 +190,53 @@ const TABS_NAME = 'main-tabs';
 
 	.pane {
 		display: none;
+		flex-direction: column;
+		gap: var(--space-8);
+	}
+
+	.contact-links {
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.contact-links .separator {
+		color: var(--ink-500);
+	}
+
+	.summary {
+		line-height: var(--leading-normal);
+	}
+
+	.achievements {
+		margin: 0;
+		padding-left: 1.1em;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+
+	.skill-groups {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.skill-group-label {
+		font-family: var(--font-display);
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wide);
+		color: var(--ink-700);
+		margin: 0 0 var(--space-2);
+	}
+
+	.languages {
+		margin: 0;
 	}
 
 	.left:has(#main-tabs-resume:checked) .pane-resume {
-		display: block;
+		display: flex;
 	}
 
 	.left:has(#main-tabs-portfolio:checked) .pane-portfolio {

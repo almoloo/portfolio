@@ -2,7 +2,7 @@ Nothing in progress - run /feature, /fix, or /rollback to start one.
 
 Remaining sub-features (Homepage split-view redesign):
 - [x] 6a. Homepage split-view shell
-- [ ] 6b. Resume tab content
+- [x] 6b. Resume tab content
 - [ ] 6c. Portfolio tab + detail panel
 
 ## History
@@ -12,3 +12,4 @@ Remaining sub-features (Homepage split-view redesign):
 **Import "Ali Mousavi Design System" (4d. Resume components)** - port ResumeHeader, ResumeSection, ExperienceItem, EducationItem, SkillList to .astro components (Completed)
 **Resume page** - build /resume from real content (translated from resume-fa-2026.pdf) using the design system components (Completed)
 **Homepage split-view redesign (6a. Homepage split-view shell)** - replace the placeholder homepage with the split-view layout (bio + Resume/Portfolio tabs on the left, project-detail panel on the right) from the design mockup, CSS-only tab switching, placeholder pane content (Completed)
+**Homepage split-view redesign (6b. Resume tab content)** - port real resume content from /resume into the homepage's Resume tab using the existing resume components, then delete the standalone /resume page (Completed)
