@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Tag from '../components/content/tag.astro';
 import Tabs from '../components/navigation/tabs.astro';
 import ResumeSection from '../components/resume/resume-section.astro';
 import ExperienceItem from '../components/resume/experience-item.astro';
@@ -39,9 +38,13 @@ const portfolioSelectionCss = renderedPortfolioItems
 			<header class="header">
 				<div class="name">Ali Mousavi</div>
 				<p class="tagline">Frontend engineer &amp; interactive designer</p>
-				<div class="tags">
-					<Tag variant="accent">remote</Tag>
-					<Tag variant="accent">available q4 2026</Tag>
+				<div class="contact-links">
+					{resume.header.links.map((link, i) => (
+						<>
+							{i > 0 && <span class="separator">·</span>}
+							<a href={link.href || '#'}>{link.label}</a>
+						</>
+					))}
 				</div>
 				<p class="bio">
 					10 years writing interfaces, specializing in video platforms and crypto products. I like small
@@ -62,15 +65,6 @@ const portfolioSelectionCss = renderedPortfolioItems
 
 			<div class="panes">
 				<div class="pane pane-resume">
-					<div class="contact-links">
-						{resume.header.links.map((link, i) => (
-							<>
-								{i > 0 && <span class="separator">·</span>}
-								<a href={link.href || '#'}>{link.label}</a>
-							</>
-						))}
-					</div>
-
 					<p class="summary">{resume.summary}</p>
 
 					<ResumeSection title="Experience">
@@ -237,10 +231,7 @@ const portfolioSelectionCss = renderedPortfolioItems
 		margin: 0 0 var(--space-3);
 	}
 
-	.tags {
-		display: flex;
-		gap: var(--space-2);
-		flex-wrap: wrap;
+	.header .contact-links {
 		margin-bottom: var(--space-4);
 	}
 

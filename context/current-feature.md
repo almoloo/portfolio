@@ -11,3 +11,4 @@ Nothing in progress - run /feature, /fix, or /rollback to start one.
 **Homepage split-view redesign (6c. Portfolio tab + detail panel)** - real portfolio list in the left panel wired to a right-panel detail view via build-time-generated CSS-only radio selection, no client JS (Completed)
 **Default to Resume tab, drop almoloo.com link** - homepage now opens on the Resume tab by default; almoloo.com removed from resume contact links (Completed)
 **Favicon as a simple "A"** - replace favicon.svg/.ico with a bold "A" glyph, theme-aware light/dark fill (Completed)
+**Hero contact links** - remove remote/available tags from hero, move github/email/phone links there (Completed)
