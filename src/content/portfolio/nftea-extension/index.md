@@ -20,3 +20,9 @@ NFTea brings market data into the page you're already browsing instead of sendin
 ## Tech stack
 
 React · TypeScript · Tailwind CSS + shadcn/ui · OpenSea API · UnleashNFT API
+
+## Screenshots
+
+![Collection analytics](./screenshot-collection.png)
+![Asset analytics](./screenshot-asset.png)
+![Wallet analytics](./screenshot-wallet.png)

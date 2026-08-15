@@ -17,3 +17,8 @@ Bellman is a straightforward price-alert service: pick a coin, set a target pric
 ## Tech stack
 
 Node.js · Express · Tailwind CSS · Binance API · Flatfile (alert storage)
+
+## Screenshots
+
+![Homepage](./screenshot-light.png)
+![List of coins](./screenshot-list.png)

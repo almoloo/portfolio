@@ -4,7 +4,6 @@ description: A fully decentralized lottery on Flow blockchain, with provably fai
 thumbnail: ./thumbnail.png
 date: 2025-10-18
 githubUrl: https://github.com/almoloo/lotto
-demoUrl: https://lotto.almoloo.com
 ---
 
 Lotto is a decentralized lottery built entirely on **Cadence smart contracts** — session creation, ticket sales, winner selection, and prize distribution all happen on-chain, so nothing about the draw depends on trusting a server.

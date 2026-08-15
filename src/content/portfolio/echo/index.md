@@ -24,3 +24,8 @@ Anything the assistant can't answer gets logged for the owner to review, so the 
 ## Tech stack
 
 Next.js · TypeScript · Tailwind CSS + shadcn/ui · MongoDB · NextAuth · Lukso Universal Profile standards (ERC725, viem.js) · OpenAI API
+
+## Screenshots
+
+![Homepage](./screenshot-homepage.jpeg)
+![Dashboard](./screenshot-dashboard.jpeg)

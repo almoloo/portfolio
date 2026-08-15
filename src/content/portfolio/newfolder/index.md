@@ -26,3 +26,8 @@ Credits are funded by a small, auditable `CreditVault` smart contract: users top
 ## Tech stack
 
 Next.js 16 (App Router, Turbopack) · Tailwind CSS v4 · Better Auth + SIWE · RainbowKit / Wagmi / viem · 0G Storage & Compute SDKs · PostgreSQL + Drizzle ORM · Solidity + Foundry
+
+## Screenshots
+
+![Dashboard](./screenshot-dashboard.png)
+![File chat](./screenshot-chat.png)

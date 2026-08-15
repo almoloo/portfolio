@@ -12,3 +12,8 @@ Luxo is a clean, standalone viewer for **Lukso Universal Profiles** — paste or
 ## Tech stack
 
 Next.js · React · shadcn/ui · Pinata (IPFS)
+
+## Screenshots
+
+![Profile viewer](./screenshot-1.png)
+![Profile detail](./screenshot-2.png)

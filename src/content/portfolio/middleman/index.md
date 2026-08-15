@@ -4,7 +4,6 @@ description: An AI-powered widget that bridges a Lukso blockchain profile and it
 thumbnail: ./thumbnail.png
 date: 2025-03-03
 githubUrl: https://github.com/almoloo/middleman
-demoUrl: https://middleman.almoloo.com
 ---
 
 Middleman is the earlier of two projects exploring the same idea — an AI layer between a Lukso profile and the people visiting it. Users answer AI-generated questions about themselves, their answers are stored on IPFS so they keep ownership of the data, and visitors get a conversational assistant that answers strictly from what the owner chose to share.
@@ -23,3 +22,7 @@ Question generation and the visitor-facing chatbot both run through OpenAI's Ass
 ## Tech stack
 
 Next.js · TypeScript · Tailwind CSS · OpenAI Assistant API · IPFS (Pinata)
+
+## Screenshots
+
+![Profile widget](./screenshot-widget.png)

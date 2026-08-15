@@ -22,3 +22,9 @@ The `Xenia.sol` contract exposes the whole lifecycle: `createGiftCard` hashes a 
 ## Tech stack
 
 Solidity · Hardhat · EVM (AIA network)
+
+## Screenshots
+
+![Creating a gift card](./screenshot-create.png)
+![Validating a gift card](./screenshot-validate.png)
+![Redeeming a gift card](./screenshot-redeem.png)

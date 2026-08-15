@@ -4,7 +4,6 @@ description: A decentralized payment gateway on Aptos — customers pay in any t
 thumbnail: ./thumbnail.png
 date: 2025-08-17
 githubUrl: https://github.com/almoloo/flow
-demoUrl: https://flow.almoloo.com
 ---
 
 Flow is a payment gateway for small businesses that removes crypto's biggest adoption blocker: volatility. Customers pay with whatever token they hold — APT, BTC, USDT, and more — and vendors always receive stable USDT, with the conversion handled automatically on-chain.
@@ -28,3 +27,7 @@ The core logic lives in Move smart contracts: a `Vendor` resource tracks gateway
 Next.js 14 · Tailwind CSS + shadcn/ui · React Query · Aptos blockchain + Move contracts · Liquidswap · MongoDB · MinIO · OpenAI GPT-4
 
 Built with [Hossein](https://github.com/Hossein-79).
+
+## Screenshots
+
+![Payment gateway](./screenshot-gateway.png)

@@ -4,7 +4,6 @@ description: An achievement dashboard for the Open Campus network — create cus
 thumbnail: ./thumbnail.png
 date: 2024-07-10
 githubUrl: https://github.com/almoloo/quest
-demoUrl: https://quest-blush.vercel.app
 ---
 
 Quest lets people design, mint, and manage achievement badges on the **Open Campus** network — think verifiable credentials with a UI simple enough that "customize an emoji, pick a color, save it" is the whole flow.
@@ -25,3 +24,7 @@ Achievements are built from templates with custom emoji, text, and color, then s
 Next.js · wagmi · Tailwind CSS · Pinata (IPFS) · Web3Modal · Ant Design
 
 Built with [Hossein](https://github.com/hossein-79).
+
+## Screenshots
+
+![Creating an achievement](./screenshot-create.png)

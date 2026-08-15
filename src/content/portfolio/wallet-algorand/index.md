@@ -18,3 +18,8 @@ A custodial wallet for Algorand, built for a 30-day Gitcoin contest, focused on 
 ## Tech stack
 
 Node.js · Express · EJS · Tatum API/SDK · Firebase Firestore · AlgoExplorer API · CoinGecko API
+
+## Screenshots
+
+![Welcome screen](./screenshot-welcome.png)
+![Wallet](./screenshot-wallet.png)

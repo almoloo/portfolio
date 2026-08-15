@@ -26,3 +26,7 @@ Authentication runs through Particle Network, so a wallet address becomes the pr
 Next.js · Solidity · Avalanche (Fuji testnet) · Particle Network Auth · Covalent Unified API
 
 Built for the Avalanche Frontier hackathon with [Hossein](https://github.com/Hossein-79).
+
+## Screenshots
+
+![Profile dashboard](./screenshot.png)
